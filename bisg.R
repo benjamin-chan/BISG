@@ -10,7 +10,15 @@ library(wru)
 sessionInfo()
 
 
-channel <- odbcDriverConnect("Driver=ODBC Driver 17 for SQL Server; Server=Wpohasqll17,5001\\SQLEXPRESS; Database=HAL_APAC; Uid=; Pwd=; trusted_connection=yes")
+channel <-
+  c("Driver=ODBC Driver 17 for SQL Server",
+    "Server=Wpohasqll17,5001\\SQLEXPRESS",
+    "Database=HAL_APAC",
+    "Uid=",
+    "Pwd=",
+    "trusted_connection=yes") %>%
+  paste(collapse = "; ") %>%
+  odbcDriverConnect()
 query <- read_file("discharges.sql")
 df <- sqlQuery(channel, query)
 odbcClose(channel)
