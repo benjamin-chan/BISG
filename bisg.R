@@ -63,7 +63,7 @@ predicted <-
                surname.year = 2010,
                census.geo = "county",
                census.key = key,
-               age = TRUE,
-               sex = TRUE)
+               age = FALSE,
+               sex = FALSE) %>%
 
 predicted %>% knitr::kable()
