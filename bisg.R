@@ -40,6 +40,14 @@ predicted <-
          block = sprintf("%04d", geo_census_block)) %>%
   mutate(sex = case_when(gender == "M" ~ 0,
                          gender == "F" ~ 1)) %>%
+  mutate(race = case_when(race == "R1" ~ "American Indian or Alaska Native",
+                          race == "R2" ~ "Asian",
+                          race == "R3" ~ "Black or African American",
+                          race == "R4" ~ "Native Hawaiian or Pacific Islander",
+                          race == "R5" ~ "White",
+                          race == "R7" ~ "Patient Refused",
+                          race == "R8" ~ "Unknown",
+                          race == "R9" ~ "Other")) %>%
   select(-c(gender,
             geo_census_id,
             geo_state_fips,
