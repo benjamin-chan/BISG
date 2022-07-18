@@ -7,6 +7,8 @@ library(tidyr)
 library(readr)
 library(RODBC)
 library(wru)
+library(maps)
+data(state.fips)
 sessionInfo()
 
 
@@ -34,8 +36,25 @@ predicted <-
   ungroup() %>%
   arrange(race) %>%
   rename(surname = patient_last_name) %>%
-  predict_race(surname.only = TRUE,
-               surname.year = 2010) %>%
-  select(-starts_with("geo"))
+  inner_join(state.fips %>% select(fips, abb) %>% unique(),
+             by = c("geo_state_fips" = "fips")) %>%
+  rename(state = abb) %>%
+  mutate(county = sprintf("%03d", geo_county_fips),
+         tract = sprintf("%06d", geo_census_tract),
+         block = sprintf("%04d", geo_census_block)) %>%
+  mutate(sex = case_when(gender == "M" ~ 0,
+                         gender == "F" ~ 1)) %>%
+  select(-c(gender,
+            geo_census_id,
+            geo_state_fips,
+            geo_county_fips,
+            geo_census_tract,
+            geo_census_block)) %>%
+  predict_race(surname.only = FALSE,
+               surname.year = 2010,
+               census.geo = "county",
+               census.key = key,
+               age = TRUE,
+               sex = TRUE)
 
 predicted %>% knitr::kable()
