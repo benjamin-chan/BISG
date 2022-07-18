@@ -24,6 +24,9 @@ df <- sqlQuery(channel, query)
 odbcClose(channel)
 
 
+key <- read_file("C:/Users/or0250652/OneDrive - Oregon DHSOHA/API keys/censusAPIKey.txt")
+
+
 predicted <-
   df %>%
   group_by(race) %>%
