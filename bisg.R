@@ -48,6 +48,10 @@ predicted <-
                           race == "R7" ~ "Patient Refused",
                           race == "R8" ~ "Unknown",
                           race == "R9" ~ "Other")) %>%
+  mutate(ethnicity = case_when(ethnicity == "E1" ~ "Hispanic or Latino",
+                               ethnicity == "E2" ~ "Non-Hispanic or Latino",
+                               ethnicity == "E8" ~ "Patient Refused",
+                               ethnicity == "E9" ~ "Unknown")) %>%
   select(-c(gender,
             geo_census_id,
             geo_state_fips,
