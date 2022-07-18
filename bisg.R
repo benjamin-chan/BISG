@@ -31,10 +31,6 @@ key <- read_file("C:/Users/or0250652/OneDrive - Oregon DHSOHA/API keys/censusAPI
 
 predicted <-
   df %>%
-  group_by(race) %>%
-  sample_n(3) %>%
-  ungroup() %>%
-  arrange(race) %>%
   rename(surname = patient_last_name) %>%
   inner_join(state.fips %>% select(fips, abb) %>% unique(),
              by = c("geo_state_fips" = "fips")) %>%
