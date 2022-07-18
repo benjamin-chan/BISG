@@ -74,6 +74,15 @@ predicted <-
                                predicted == "pred.bla" ~ "Black or African American",
                                predicted == "pred.his" ~ "Hispanic or Latino",
                                predicted == "pred.asi" ~ "Asian",
-                               predicted == "pred.oth" ~ "Other"))
+                               predicted == "pred.oth" ~ "Other")) %>%
+  mutate(agreement = (ethnicity != "Hispanic or Latino" & race == predicted) |
+                     (ethnicity == "Hispanic or Latino" & predicted == "Hispanic or Latino"))
 
-predicted %>% knitr::kable()
+
+cstatistic <-
+  predicted %>%
+  filter(!(race %in% c("Patient Refused", "Unknown", "Other") &
+         !(ethnicity %in% c("Patient Refused", "Unknown")))) %>%
+  summarize(cstatistic = sum(agreement) / n()) %>%
+  pull(cstatistic)
+cstatistic %>% sprintf("C-statistic: %.5f", .) %>% message()
