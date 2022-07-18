@@ -65,5 +65,15 @@ predicted <-
                census.key = key,
                age = FALSE,
                sex = FALSE) %>%
+  pivot_longer(starts_with("pred."), names_to = "predicted", values_to = "probability") %>%
+  group_by(record_id) %>%
+  arrange(-probability) %>%
+  filter(row_number() == 1) %>%
+  ungroup() %>%
+  mutate(predicted = case_when(predicted == "pred.whi" ~ "White",
+                               predicted == "pred.bla" ~ "Black or African American",
+                               predicted == "pred.his" ~ "Hispanic or Latino",
+                               predicted == "pred.asi" ~ "Asian",
+                               predicted == "pred.oth" ~ "Other"))
 
 predicted %>% knitr::kable()
