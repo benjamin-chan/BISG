@@ -46,6 +46,7 @@ predicted <-
             geo_county_fips,
             geo_census_tract,
             geo_census_block)) %>%
+  filter(state == "OR") %>%
   predict_race(surname.only = FALSE,
                surname.year = 2010,
                census.geo = "county",
