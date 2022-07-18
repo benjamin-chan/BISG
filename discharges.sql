@@ -8,7 +8,8 @@ select A.patient_last_name,
        A.race,
        A.ethnicity,
        A.age,
-       A.gender
+       A.gender,
+       A.record_id
 from hosp.hdd A inner join
      hosp.hdd_geocode B on A.record_id = B.record_id
 where year(A.discharge_date) = 2021
