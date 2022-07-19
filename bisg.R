@@ -56,6 +56,7 @@ df <-
             geo_census_tract,
             geo_census_block)) %>%
   filter(state == "OR") %>%
+  filter(geo_result_category == "A") %>%
   filter(!is.na(age) & !is.na(sex))
 dim(df)
   
