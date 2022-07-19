@@ -12,9 +12,7 @@ select A.patient_last_name,
        A.record_id
 from hosp.hdd A inner join
      hosp.hdd_geocode B on A.record_id = B.record_id
-where year(A.discharge_date) in (2017,
-                                 2018,
-                                 2019,
+where year(A.discharge_date) in (2019,
                                  2020,
                                  2021)
 ;
