@@ -59,6 +59,7 @@ predicted <-
             geo_census_tract,
             geo_census_block)) %>%
   filter(state == "OR") %>%
+  filter(!is.na(age) | !is.na(sex)) %>%
   predict_race(surname.only = FALSE,
                surname.year = 2010,
                census.geo = "county",
