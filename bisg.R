@@ -32,6 +32,7 @@ key <- read_file("C:/Users/or0250652/OneDrive - Oregon DHSOHA/API keys/censusAPI
 predicted <-
   df %>%
   filter(state == "OR") %>%
+  filter(geo_result_category == "A") %>%
   filter(!is.na(age) & !is.na(sex)) %>%
   rename(surname = patient_last_name) %>%
   inner_join(state.fips %>% select(fips, abb) %>% unique(),
