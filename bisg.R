@@ -62,16 +62,17 @@ dim(df)
   
   
 key <- read_file("C:/Users/or0250652/OneDrive - Oregon DHSOHA/API keys/censusAPIKey.txt")
-
-
-predicted <-
+probabilities <-
   df %>%
   predict_race(surname.only = FALSE,
                surname.year = 2010,
                census.geo = "county",
                census.key = key,
                age = FALSE,
-               sex = FALSE) %>%
+               sex = FALSE)
+               
+
+predicted %>%
   pivot_longer(starts_with("pred."), names_to = "predicted", values_to = "probability") %>%
   group_by(record_id) %>%
   arrange(-probability) %>%
