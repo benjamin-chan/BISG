@@ -22,15 +22,12 @@ channel <-
   paste(collapse = "; ") %>%
   odbcDriverConnect()
 query <- read_file("discharges.sql")
-df <- sqlQuery(channel, query)
+discharges <- sqlQuery(channel, query)
 odbcClose(channel)
 
 
-key <- read_file("C:/Users/or0250652/OneDrive - Oregon DHSOHA/API keys/censusAPIKey.txt")
-
-
-predicted <-
-  df %>%
+df <-
+  discharges %>%
   rename(surname = patient_last_name) %>%
   inner_join(state.fips %>% select(fips, abb) %>% unique(),
              by = c("geo_state_fips" = "fips")) %>%
@@ -59,7 +56,15 @@ predicted <-
             geo_census_tract,
             geo_census_block)) %>%
   filter(state == "OR") %>%
-  filter(!is.na(age) & !is.na(sex)) %>%
+  filter(!is.na(age) & !is.na(sex))
+dim(df)
+  
+  
+key <- read_file("C:/Users/or0250652/OneDrive - Oregon DHSOHA/API keys/censusAPIKey.txt")
+
+
+predicted <-
+  df %>%
   predict_race(surname.only = FALSE,
                surname.year = 2010,
                census.geo = "county",
