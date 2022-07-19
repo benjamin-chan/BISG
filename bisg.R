@@ -31,9 +31,6 @@ key <- read_file("C:/Users/or0250652/OneDrive - Oregon DHSOHA/API keys/censusAPI
 
 predicted <-
   df %>%
-  filter(state == "OR") %>%
-  filter(geo_result_category == "A") %>%
-  filter(!is.na(age) & !is.na(sex)) %>%
   rename(surname = patient_last_name) %>%
   inner_join(state.fips %>% select(fips, abb) %>% unique(),
              by = c("geo_state_fips" = "fips")) %>%
@@ -61,6 +58,8 @@ predicted <-
             geo_county_fips,
             geo_census_tract,
             geo_census_block)) %>%
+  filter(state == "OR") %>%
+  filter(!is.na(age) & !is.na(sex)) %>%
   predict_race(surname.only = FALSE,
                surname.year = 2010,
                census.geo = "county",
