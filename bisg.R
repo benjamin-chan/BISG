@@ -72,7 +72,8 @@ probabilities <-
                sex = FALSE)
                
 
-predicted %>%
+predicted <-
+  probabilities %>%
   pivot_longer(starts_with("pred."), names_to = "predicted", values_to = "probability") %>%
   group_by(record_id) %>%
   arrange(-probability) %>%
@@ -87,7 +88,7 @@ predicted %>%
                      (ethnicity != "Hispanic or Latino" & predicted == "Black" & race == "Black or African American") |
                      (ethnicity == "Hispanic or Latino" & predicted == "Hispanic/Latino") |
                      (ethnicity != "Hispanic or Latino" & predicted == "Asian/Pacific Islander" & race %in% c("Asian", "Native Hawaiian or Pacific Islander")) |
-                     (ethnicity != "Hispanic or Latino" & predicted == "Other/Mixed" & race %in% c("American Indian or Alaska Native", "Other"))) %>%
+                     (ethnicity != "Hispanic or Latino" & predicted == "Other/Mixed" & race %in% c("American Indian or Alaska Native", "Other")))
 
 
 cstatistic <-
