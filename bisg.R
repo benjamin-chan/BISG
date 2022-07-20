@@ -92,8 +92,8 @@ predicted %>%
 
 cstatistic <-
   predicted %>%
-  filter(!(race %in% c("Patient Refused", "Unknown", "Other") &
-         !(ethnicity %in% c("Patient Refused", "Unknown")))) %>%
+  filter(!(race %in% c("Patient Refused", "Unknown")) |
+         ethnicity == "Hispanic or Latino") %>%
   summarize(cstatistic = sum(agreement) / n()) %>%
   pull(cstatistic)
 cstatistic %>% sprintf("C-statistic: %.5f", .) %>% message()
