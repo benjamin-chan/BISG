@@ -79,10 +79,10 @@ predicted %>%
   filter(row_number() == 1) %>%
   ungroup() %>%
   mutate(predicted = case_when(predicted == "pred.whi" ~ "White",
-                               predicted == "pred.bla" ~ "Black or African American",
-                               predicted == "pred.his" ~ "Hispanic or Latino",
-                               predicted == "pred.asi" ~ "Asian",
-                               predicted == "pred.oth" ~ "Other")) %>%
+                               predicted == "pred.bla" ~ "Black",
+                               predicted == "pred.his" ~ "Hispanic/Latino",
+                               predicted == "pred.asi" ~ "Asian/Pacific Islander",
+                               predicted == "pred.oth" ~ "Other/Mixed")) %>%
   mutate(agreement = (ethnicity != "Hispanic or Latino" & race == predicted) |
                      (ethnicity == "Hispanic or Latino" & predicted == "Hispanic or Latino"))
 
