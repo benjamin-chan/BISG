@@ -1,5 +1,5 @@
 library(checkpoint)
-checkpoint("2022-01-01")
+checkpoint("2022-07-20")
 
 library(magrittr)
 library(dplyr)
