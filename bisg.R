@@ -64,7 +64,7 @@ dim(df)
 key <- read_file("C:/Users/or0250652/OneDrive - Oregon DHSOHA/API keys/censusAPIKey.txt")
 probabilities <-
   df %>%
-  predict_race(surname.only = FALSE,
+  predict_race(surname.only = TRUE,
                surname.year = 2010,
                census.geo = "county",
                census.key = key,
@@ -98,3 +98,22 @@ cstatistic <-
   summarize(cstatistic = sum(agreement) / n()) %>%
   pull(cstatistic)
 cstatistic %>% sprintf("C-statistic: %.5f", .) %>% message()
+
+
+predicted %>%
+  filter(race %in% c("Patient Refused", "Unknown") &
+         ethnicity != "Hispanic or Latino") %>%
+  group_by(predicted) %>%
+  summarize(freq = n(),
+            prop = NA,
+            mean = mean(probability),
+            min = min(probability),
+            p05 = quantile(probability, p = 0.05),
+            p10 = quantile(probability, p = 0.10),
+            median = median(probability),
+            p90 = quantile(probability, p = 0.90),
+            p95 = quantile(probability, p = 0.95),
+            max = max(probability)) %>%
+  ungroup() %>%
+  mutate(prop = freq / sum(freq)) %>%
+  knitr::kable()

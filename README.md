@@ -66,24 +66,34 @@ loaded via a namespace (and not attached):
 
 ## Results
 
-The scenario with the best agreement is surname-only prediction with no
+The scenario with the best agreement is **A** surname-only prediction with no
 geocoding (`surname.only = TRUE`).
 
-`surname.only` | `census.geo` | `age` | `sex` | $C$-statistic
----------------|--------------|-------|-------|-----------
-TRUE           | NULL         | NULL  | NULL  | 0.86465
-FALSE          | county       | FALSE | FALSE | 0.85537
-FALSE          | county       | FALSE | TRUE  | 0.85575
-FALSE          | county       | TRUE  | FALSE | 0.86101
-FALSE          | county       | TRUE  | TRUE  | 0.86098
-FALSE          | tract        | FALSE | FALSE | 0.85848
-FALSE          | tract        | FALSE | TRUE  | 0.85863
-FALSE          | tract        | TRUE  | FALSE | 0.86284
-FALSE          | tract        | TRUE  | TRUE  | 0.86047
-FALSE          | block        | FALSE | FALSE | 0.85035
-FALSE          | block        | FALSE | TRUE  | 0.84774
-FALSE          | block        | TRUE  | FALSE | 0.82433
-FALSE          | block        | TRUE  | TRUE  | 0.81743
+scenario | `surname.only` | `census.geo` | `age` | `sex` | $C$-statistic
+---------|----------------|--------------|-------|-------|-----------
+A        | TRUE           | NULL         | NULL  | NULL  | 0.86465
+B        | FALSE          | county       | FALSE | FALSE | 0.85537
+C        | FALSE          | county       | FALSE | TRUE  | 0.85575
+D        | FALSE          | county       | TRUE  | FALSE | 0.86101
+E        | FALSE          | county       | TRUE  | TRUE  | 0.86098
+F        | FALSE          | tract        | FALSE | FALSE | 0.85848
+G        | FALSE          | tract        | FALSE | TRUE  | 0.85863
+H        | FALSE          | tract        | TRUE  | FALSE | 0.86284
+I        | FALSE          | tract        | TRUE  | TRUE  | 0.86047
+J        | FALSE          | block        | FALSE | FALSE | 0.85035
+K        | FALSE          | block        | FALSE | TRUE  | 0.84774
+L        | FALSE          | block        | TRUE  | FALSE | 0.82433
+M        | FALSE          | block        | TRUE  | TRUE  | 0.81743
+
+Predicted race and predicted race probability summary for scenario **A**.
+
+|predicted              |  freq|      prop|      mean|       min|       p05|       p10|    median|       p90|      p95|    max|
+|:----------------------|-----:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|--------:|------:|
+|Asian/Pacific Islander |  1707| 0.0345862| 0.8209180| 0.3485000| 0.4222000| 0.4749800| 0.9122000| 0.9661000| 0.968700| 0.9915|
+|Black                  |   925| 0.0187418| 0.6004883| 0.3113000| 0.4508600| 0.4750000| 0.5304000| 0.8953643| 0.952580| 0.9934|
+|Hispanic/Latino        |  6716| 0.1360754| 0.9002925| 0.3530000| 0.7154037| 0.8142186| 0.9285071| 0.9569000| 0.972725| 1.0000|
+|Other/Mixed            |    47| 0.0009523| 0.6540990| 0.3242324| 0.3676000| 0.3919400| 0.6666667| 0.9540200| 0.962340| 0.9746|
+|White                  | 39960| 0.8096444| 0.8005613| 0.3109000| 0.5823582| 0.6378276| 0.8176000| 0.9521048| 0.960700| 1.0000|
 
 
 ## References
