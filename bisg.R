@@ -83,8 +83,11 @@ predicted %>%
                                predicted == "pred.his" ~ "Hispanic/Latino",
                                predicted == "pred.asi" ~ "Asian/Pacific Islander",
                                predicted == "pred.oth" ~ "Other/Mixed")) %>%
-  mutate(agreement = (ethnicity != "Hispanic or Latino" & race == predicted) |
-                     (ethnicity == "Hispanic or Latino" & predicted == "Hispanic or Latino"))
+  mutate(agreement = (ethnicity != "Hispanic or Latino" & predicted == "White" & race == "White") |
+                     (ethnicity != "Hispanic or Latino" & predicted == "Black" & race == "Black or African American") |
+                     (ethnicity == "Hispanic or Latino" & predicted == "Hispanic/Latino") |
+                     (ethnicity != "Hispanic or Latino" & predicted == "Asian/Pacific Islander" & race %in% c("Asian", "Native Hawaiian or Pacific Islander")) |
+                     (ethnicity != "Hispanic or Latino" & predicted == "Other/Mixed" & race %in% c("American Indian or Alaska Native", "Other"))) %>%
 
 
 cstatistic <-
