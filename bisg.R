@@ -65,7 +65,7 @@ key <- read_file("C:/Users/or0250652/OneDrive - Oregon DHSOHA/API keys/censusAPI
 probabilities <-
   df %>%
   predict_race(surname.only = TRUE,
-               surname.year = 2010,
+               surname.year = 2020,
                census.geo = "county",
                census.key = key,
                age = FALSE,
