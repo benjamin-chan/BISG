@@ -106,4 +106,5 @@ Predicted race and predicted race probability summary for scenario **A**.
 * Imputation of Race and Ethnicity in Health Insurance Marketplace Enrollment Data, 2015 – 2022 Open Enrollment Periods(https://aspe.hhs.gov/reports/imputation-race-ethnicity-marketplace-enrollment-data)
 * Voting Rights blog (https://rpvote.github.io/voting-rights/bisg/)
 * RAND (https://www.rand.org/health-care/tools-methods/bisg.html)
+* Is the accuracy of Bayesian Improved Surname Geocoding bad news for privacy protection at the Census? Technically no, PR-wise probably. (https://statmodeling.stat.columbia.edu/2021/10/27/is-the-accuracy-of-bayesian-improved-surname-geocoding-bad-news-for-privacy-protection-at-the-census-technically-no-pr-wise-probably/)
 
