@@ -35,10 +35,9 @@ df <-
   inner_join(state.fips %>% select(fips, abb) %>% unique(),
              by = c("geo_state_fips" = "fips")) %>%
   rename(state = abb) %>%
-  mutate(state = factor(state),
-         county = sprintf("%03d", geo_county_fips) %>% factor(),
-         tract = sprintf("%06d", geo_census_tract) %>% factor(),
-         block = sprintf("%04d", geo_census_block) %>% factor()) %>%
+  mutate(county = sprintf("%03d", geo_county_fips),
+         tract = sprintf("%06d", geo_census_tract),
+         block = sprintf("%04d", geo_census_block)) %>%
   mutate(sex = case_when(gender == "M" ~ 0,
                          gender == "F" ~ 1)) %>%
   mutate(race = case_when(race == "R1" ~ "American Indian or Alaska Native",
