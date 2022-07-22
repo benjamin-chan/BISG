@@ -70,7 +70,7 @@ probabilities <-
                census.key = key,
                age = FALSE,
                sex = FALSE)
-               
+
 
 predicted <-
   probabilities %>%
