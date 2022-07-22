@@ -28,6 +28,9 @@ odbcClose(channel)
 
 df <-
   discharges %>%
+  filter(geo_state_fips == 41) %>%
+  filter(geo_result_category == "A") %>%
+  filter(!is.na(age) & gender %in% c("F", "M")) %>%
   rename(surname = patient_last_name) %>%
   inner_join(state.fips %>% select(fips, abb) %>% unique(),
              by = c("geo_state_fips" = "fips")) %>%
@@ -55,13 +58,10 @@ df <-
             geo_state_fips,
             geo_county_fips,
             geo_census_tract,
-            geo_census_block)) %>%
-  filter(state == "OR") %>%
-  filter(geo_result_category == "A") %>%
-  filter(!is.na(age) & !is.na(sex))
+            geo_census_block))
 dim(df)
-  
-  
+
+
 key <- read_file("C:/Users/or0250652/OneDrive - Oregon DHSOHA/API keys/censusAPIKey.txt")
 probabilities <-
   df %>%
