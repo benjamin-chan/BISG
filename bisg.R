@@ -32,6 +32,8 @@ df <-
   filter(geo_state_fips == 41) %>%
   filter(geo_result_category == "A") %>%
   filter(!is.na(age) & gender %in% c("F", "M")) %>%
+  filter(!(geo_county_fips == 023 & geo_census_tract == 970300 |
+           geo_county_fips == 049 & geo_census_tract == 000300)) %>%
   rename(surname = patient_last_name) %>%
   inner_join(state.fips %>% select(fips, abb) %>% unique(),
              by = c("geo_state_fips" = "fips")) %>%
