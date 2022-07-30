@@ -88,7 +88,9 @@ K        | FALSE          | block        | FALSE | TRUE  | NULL
 L        | FALSE          | block        | TRUE  | FALSE | NULL
 M        | FALSE          | block        | TRUE  | TRUE  | NULL
 
-Predicted race and predicted race probability summary for scenario **F**.
+Predicted race and predicted race probability summary for scenario **F** for
+individuals with *refused* or *unknown* race and not *Hispanic or Latino*
+ethnicity.
 
 |predicted              |  freq|      prop|      mean|       min|       p05|       p10|    median|       p90|       p95|      max|
 |:----------------------|-----:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|---------:|--------:|
