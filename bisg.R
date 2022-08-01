@@ -106,9 +106,11 @@ cstatistic %>% sprintf("C-statistic: %.5f", .) %>% message()
 predicted %>%
   filter(race %in% c("Patient Refused", "Unknown") &
          ethnicity != "Hispanic or Latino") %>%
+  mutate(probLT50 = probability < 0.5) %>%
   group_by(predicted) %>%
   summarize(freq = n(),
             prop = NA,
+            propPredRaceLT50 = sum(probLT50) / n(),
             mean = mean(probability),
             min = min(probability),
             p05 = quantile(probability, p = 0.05),
