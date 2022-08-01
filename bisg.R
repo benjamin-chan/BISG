@@ -8,6 +8,7 @@ library(readr)
 library(RODBC)
 # remotes::install_github("kosukeimai/wru", ref = "issue_72")
 library(wru)
+key <- read_file("C:/Users/or0250652/OneDrive - Oregon DHSOHA/API keys/censusAPIKey.txt")
 library(maps)
 data(state.fips)
 sessionInfo()
@@ -64,12 +65,11 @@ df <-
 dim(df)
 
 
-key <- read_file("C:/Users/or0250652/OneDrive - Oregon DHSOHA/API keys/censusAPIKey.txt")
 probabilities <-
   df %>%
   predict_race(surname.only = FALSE,
                surname.year = 2020,
-               census.geo = "county",
+               census.geo = "tract",
                census.key = key,
                age = FALSE,
                sex = FALSE)
